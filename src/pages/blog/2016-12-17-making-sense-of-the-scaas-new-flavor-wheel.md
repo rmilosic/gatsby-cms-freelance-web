@@ -4,7 +4,7 @@ title: 'Building AWS lambda layer with pdftotext  '
 date: 2020-02-16T15:04:00.000Z
 description: ''
 featuredpost: false
-featuredimage: ''
+featuredimage: /img/chemex.jpg
 tags:
   - aws
   - lambda

@@ -1,0 +1,18 @@
+// Custom variables that get later compiled with 
+$primary:       '#032E49' !important;
+$secondary:     '#FED97D' !important;
+$dark:          '#5B5652' !important;
+
+/* make the customizations */
+$theme-colors: (
+    "primary": #032E49,
+    "secondary": #FED97D,
+    "dark": #5B5652
+);
+
+@import "~bootstrap/scss/bootstrap.scss";
+
+
+body {
+   background-color: #fafafa;
+}
