@@ -10,4 +10,6 @@ tags:
   - lambda
   - pdftotext
 ---
-I struggled to find useful info on building AWS lambda layer from scratch. I decided to post a few useful realisations for someone who might be in need for lambda function to be able to use python packages with native dependencies, for example pdftotext.
+## I struggled to find useful info on building AWS lambda layer from scratch. 
+
+I decided to post a few useful realisations for someone who might be in need for lambda function to be able to use python packages with native dependencies, for example pdftotext.

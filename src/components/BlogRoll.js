@@ -5,26 +5,40 @@ import PreviewCompatibleImage from './PreviewCompatibleImage'
 
 import { Container, Row, Col } from 'react-bootstrap'
 
+
+// icons
+import {FaStar} from 'react-icons/fa'
+
 class BlogRoll extends React.Component {
   render() {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
 
     return (
-      <div className="columns is-multiline">
+      <div>
         {posts &&
           posts.map(({ node: post }) => (
-            <div className="my-4" key={post.id}>
-              <article>
-              <div className="shadow-sm card-body bg-white rounded">
-                <h5 className="card-title">{post.frontmatter.title}</h5>
-                <p className="card-text">{post.excerpt}</p>
-                <Link to={post.fields.slug} className="btn btn-primary">Go somewhere</Link>
-              </div>
-                <header>
-                  
-                </header>
+            <div className="my-5" key={post.id}>
+              <article className="my-4">
+                <header className="pb-3"><h3>{post.frontmatter.title}</h3></header>
+                <p className="px">{post.excerpt}</p> <Link className="text-secondary" to={post.fields.slug}>Preberi več</Link>
+                {/* <Link to={post.fields.slug} className="btn btn-primary">Go somewhere</Link> */}
+                <hr/>
+                <Row>
+                  <Col>
+                    <span><small className="font-weight-bold">{post.frontmatter.date}</small></span>
+                  </Col>
+                </Row>
+                
+                {/* TODO: implement db serverless methds */}
+                {/* <Row>
+                  {/* <Col>
+                    <FaStar className="text-secondary"/>
+                  </Col>
+                </Row> */}
               </article>
+
+              
             </div>
           ))}
       </div>
@@ -50,7 +64,7 @@ export default () => (
         ) {
           edges {
             node {
-              excerpt(pruneLength: 400)
+              excerpt(pruneLength: 600)
               id
               fields {
                 slug
@@ -58,7 +72,7 @@ export default () => (
               frontmatter {
                 title
                 templateKey
-                date(formatString: "MMMM DD, YYYY")
+                date(formatString: "DD MMMM, YYYY", locale: "sl")
                 featuredpost
                 featuredimage {
                   childImageSharp {
