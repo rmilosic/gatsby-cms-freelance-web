@@ -2,6 +2,11 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
+import LeftNav from '../components/LeftNav'
+import './app.scss'
+
+
+import { Container, Row, Col } from 'react-bootstrap'
 
 import useSiteMetadata from './SiteMetadata'
 import { withPrefix } from 'gatsby'
@@ -48,8 +53,34 @@ const TemplateWrapper = ({ children }) => {
           content={`${withPrefix('/')}img/og-image.jpg`}
         />
       </Helmet>
-      <Navbar />
-      <div>{children}</div>
+      {/* <Navbar /> */}
+      <Container fluid>
+        <Row>
+          {/* side tab */}
+
+          <Col sm={0} md={3} lg={2}>
+            <LeftNav/>
+          </Col>
+          
+          
+          
+          <Col className="bg-white pt-5">
+            {/* blogroll */}
+            <Row>
+              <Col xs={10} lg={{span: 8, offset: 1}}>
+                {/* <BlogRoll/>  */}
+                <div>{children}</div>
+              </Col>
+            </Row>
+
+            
+                         
+          </Col>
+        
+
+        </Row>
+      </Container>
+
       {/* <Footer /> */}
     </div>
   )

@@ -1,61 +1,141 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import Content, { HTMLContent } from '../components/Content'
 
-export const AboutPageTemplate = ({ title, content, contentComponent }) => {
-  const PageContent = contentComponent || Content
+import { Container, Row, Col, Button } from 'react-bootstrap'
+
+// images
+import rokImage from '../img/rok.jpg'
+import docImage from '../img/planning.svg'
+import computerImage from '../img/computer.svg'
+import serverImage from '../img/server.svg'
+import daImage from '../img/data-analytics.svg'
+
+
+export const AboutPageTemplate = ({ 
+  title,
+  name,
+  role,
+  leadDescription,
+  offerings 
+ }) => {
+
+  // const Offerings = offerings.map((offering) => {
+  //   return (
+  //     <Col xs={12} md={6} lg={3}>
+  //       {/* <img className="img-fluid mw-50px my-2"/> */}
+  //       <h4 className="font-weight-bold">{offering.heading}</h4>
+  //       <p>{offering.text}</p>
+  //     </Col>
+  //   )
+  // })
 
   return (
-    <section className="section section--gradient">
-      <div className="container">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <div className="section">
-              <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                {title}
-              </h2>
-              <PageContent className="content" content={content} />
-            </div>
-          </div>
-        </div>
-      </div>
+    <div>
+    <section >
+      <Container>
+        {/* Image */}
+        <Row className="justify-content-center">
+          {/* introduction */}
+          <Col xs={12} md={6}>
+            <Row>
+              <Col>
+                <h1 className="text-primary">
+                  {name}
+                </h1>
+                <h2 className="text-dark">
+                  {role}
+                </h2> 
+                <p className="lead text-dark font-weight-light">
+                  {leadDescription}
+                </p>
+              </Col>
+            </Row>              
+            <Row>
+              <Col>
+              <Link to="/portfolio">
+                <Button className="mx-4" variant="secondary" size="lg">
+                  <strong>Portfolio</strong>
+                </Button>
+              </Link>
+              <Link to="/resume">
+                <Button variant="primary" size="lg">
+                  <strong>Življenjepis</strong>
+                </Button>
+              </Link>
+              </Col>
+            </Row>
+          </Col>
+
+          <Col xs={0} md={4}>
+            <img src={rokImage} alt="Rok Milošič" className="img-fluid rounded"/>
+          </Col>
+          
+        </Row>
+      </Container>
     </section>
+
+    <section className="bg-white">
+      
+      <Container>
+        <Row>
+          {/* <Offerings/> */}
+        </Row>
+      </Container>
+    </section>
+    </div>
   )
 }
 
 AboutPageTemplate.propTypes = {
-  title: PropTypes.string.isRequired,
-  content: PropTypes.string,
-  contentComponent: PropTypes.func,
+  title: PropTypes.string,
+  name: PropTypes.string,
+  role: PropTypes.string,
+  leadDescription: PropTypes.string,
+  offerings: PropTypes.array
 }
 
 const AboutPage = ({ data }) => {
-  const { markdownRemark: post } = data
+  const { frontmatter } = data.markdownRemark
 
   return (
     <Layout>
       <AboutPageTemplate
-        contentComponent={HTMLContent}
-        title={post.frontmatter.title}
-        content={post.html}
+        title={frontmatter.title}
+        offerings={frontmatter.offerings}
+        leadDescription={frontmatter.leadDescription}
+        role={frontmatter.role}
+        name={frontmatter.name}
+
       />
     </Layout>
   )
 }
 
 AboutPage.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.shape({
+    markdownRemark: PropTypes.shape({
+      frontmatter: PropTypes.object,
+    }),
+  }), 
 }
-
 export default AboutPage
 
 export const aboutPageQuery = graphql`
-  query AboutPage($id: String!) {
-    markdownRemark(id: { eq: $id }) {
-      html
+  query AboutPage{
+    markdownRemark(frontmatter: {templateKey: {eq: "about-page"}}) {
       frontmatter {
+        leadDescription
+        offerings {
+          heading
+          image {
+            relativePath
+          }
+          text
+        }
+        role
+        name
         title
       }
     }
