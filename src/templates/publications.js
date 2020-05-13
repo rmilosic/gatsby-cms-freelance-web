@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 
-import PortfolioRoll from '../components/PortfolioRoll'
+import Publications from '../components/Publications'
 
 import { Container, Row, Col, Badge } from 'react-bootstrap'
 
@@ -24,7 +24,7 @@ export const PortfolioPageTemplate = (props) => {
     return (
       <div>
           <Container>
-            <PortfolioRoll/>
+            <Publications/>
 
           </Container>
       
@@ -32,39 +32,19 @@ export const PortfolioPageTemplate = (props) => {
     )
   }
   
-  PortfolioPageTemplate.propTypes = {
-    title: PropTypes.string
-  }
-  
-  const PortfolioPage = ({ data }) => {
 
-    const { frontmatter } = data.markdownRemark
+  
+  const PortfolioPage = () => {
+
   
     return (
       <Layout>
         <PortfolioPageTemplate
-          title={frontmatter.title}
         />
       </Layout>
     )
   }
-  
-  PortfolioPage.propTypes = {
-    data: PropTypes.shape({
-      markdownRemark: PropTypes.shape({
-        frontmatter: PropTypes.object,
-      }),
-    }), 
-  }
+
   export default PortfolioPage
   
-  export const PortfolioPageQuery = graphql`
-    query PortfolioPage{
-      markdownRemark(frontmatter: {templateKey: {eq: "portfolio-page"}}) {
-        frontmatter {
-          title
-        }
-      }
-    }
-  `
-  
+
