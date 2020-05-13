@@ -65,7 +65,7 @@ export const tagPageQuery = graphql`
             slug
           }
           frontmatter {
-            title
+            title 
           }
         }
       }
