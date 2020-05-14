@@ -2,11 +2,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Nav } from 'react-bootstrap'
 import rokImage from '../img/rok.jpg'
 // icons
-import {FaStar} from 'react-icons/fa'
-
+import { FaLinkedin } from 'react-icons/fa'
+import { AiFillGithub } from 'react-icons/ai'
+import { MdEmail } from 'react-icons/md'
 
 // {/* TODO: add most voted posts */}
 
@@ -34,8 +35,34 @@ const LeftNav = ({
                 </p>
 
             </Row>
+            <Row className="text-center justify-content-center">
+                <Col >
+                    <a className="d-inline-block" href="https://github.com/rmilosic"><AiFillGithub className="mx-1"/></a>
+                    <a className="d-inline-block" href="mailto:rok.milosic@gmail.com"><MdEmail className="mx-1"/></a>
+                    <a className="d-inline-block" href="https://www.linkedin.com/in/rok-milosic/"><FaLinkedin className="mx-1"/></a>
+                </Col>
+            </Row>
             <hr/>
+            
+            <Row>
+                <Col>
+                    
+                    <Nav>
+                        <Nav.Item>
+                            <Nav.Link href="/">
+                                Writing
+                            </Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link href="/publications">
+                                Publications
+                            </Nav.Link>
+                        </Nav.Item>
+                    </Nav>                    
+                    
+                </Col>
                 
+            </Row>
         </div>
 )}
 

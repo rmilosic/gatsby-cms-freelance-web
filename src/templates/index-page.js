@@ -12,7 +12,10 @@ import { Container, Row, Col } from 'react-bootstrap'
 
 export const IndexPageTemplate = () => (
   <div>
-    <BlogRoll/>
+    <Row>
+      You arrived here early! I am still putting together useful content to fill this page.
+    </Row>
+    {/* <BlogRoll/> */}
   </div>
 )
 
