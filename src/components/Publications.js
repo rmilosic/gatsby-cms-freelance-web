@@ -1,12 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql, withAssetPrefix } from 'gatsby'
-import PreviewCompatibleImage from './PreviewCompatibleImage'
 
-import { Container, Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 
 // icons
-import {FaStar} from 'react-icons/fa'
 
 function Publications(props) {
     const { publications } = props.data.markdownRemark.frontmatter
@@ -14,9 +12,8 @@ function Publications(props) {
     console.log(publications)
     const pubs = publications.map(pub => {
       return (
-        <li>
-          <a href={ withAssetPrefix("/publications/CHEAP-OR-TIMELY-DRUG.pdf")}>{pub.title}</a>
-          {pub.authors}
+        <li className="mb-4">
+          <a href={pub.href}>{pub.title}</a>. <i>{pub.authors}. {pub.publisher}. Published in {pub.year}</i>
         </li>
       )
     })
@@ -25,7 +22,7 @@ function Publications(props) {
       <>
         
           <Row>
-            <h1>Publications</h1>
+            <h2>Publications</h2>
 
           </Row>
           <Row>
@@ -60,7 +57,7 @@ export default () => (
   <StaticQuery
     query={graphql` 
           query PublicationsQuery {
-            markdownRemark(frontmatter: { templateKey: { eq: "publications" } }) {
+            markdownRemark(frontmatter: {templateKey: {eq: "publications"}}) {
               frontmatter {
                 publications {
                   title
@@ -68,6 +65,13 @@ export default () => (
                   year
                   publisher
                   href
+                }
+              }
+            }
+            allFile(filter: {sourceInstanceName: {eq: "publications"}}) {
+              edges {
+                node {
+                  publicURL
                 }
               }
             }

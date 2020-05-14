@@ -16,7 +16,7 @@ class BlogRoll extends React.Component {
 
     return (
       <div>
-        {posts &&
+        {posts ? (
           posts.map(({ node: post }) => (
             <div className="my-5" key={post.id}>
               <article className="my-4">
@@ -40,7 +40,8 @@ class BlogRoll extends React.Component {
 
               
             </div>
-          ))}
+          ))
+        ) : "Expect to read from me soon. I am busy writing right now "}
       </div>
     )
   }

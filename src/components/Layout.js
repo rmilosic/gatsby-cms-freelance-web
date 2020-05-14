@@ -64,7 +64,7 @@ const TemplateWrapper = ({ children }) => {
           
           
           
-          <Col className="bg-white pt-5">
+          <Col className="bg-white pt-5 min-vh-100">
             {/* blogroll */}
             <Row>
               <Col xs={10} lg={{span: 8, offset: 1}}>
